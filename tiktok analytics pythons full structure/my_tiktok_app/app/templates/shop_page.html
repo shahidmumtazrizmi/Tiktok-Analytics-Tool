@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block title %}Shops - Kalodata TikTok Analytics{% endblock %}
+{% block content %}
+<div class="container mx-auto py-12">
+    <h2 class="text-3xl font-bold mb-8 bg-gradient-to-r from-pink-500 to-cyan-500 bg-clip-text text-transparent">Top TikTok Shops</h2>
+    <div class="grid grid-cols-3 gap-6">
+        {% for shop in shops %}
+        <div class="card">
+            <h3 class="font-bold text-xl mb-2">{{ shop.name }}</h3>
+            <p class="text-white/70 mb-2">{{ shop.category }}</p>
+            <div class="flex justify-between mb-2">
+                <span class="text-cyan-400 font-semibold">{{ shop.products }} products</span>
+                <span class="text-white/60">{{ shop.sales }} sales</span>
+            </div>
+            <a href="{{ url_for('shop_detail', shop_id=shop.id) }}" class="btn-secondary w-full text-center">View Shop</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %} 

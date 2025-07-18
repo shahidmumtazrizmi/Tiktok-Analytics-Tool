@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block title %}Shops - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Shop Analytics</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Analyze top-performing TikTok Shops and their strategies</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+            <input type="text" placeholder="Search shops..." class="form-input" style="flex: 1; min-width: 250px;">
+            <select class="form-input" style="width: auto;">
+                <option>All Categories</option>
+                <option>Electronics</option>
+                <option>Fashion</option>
+                <option>Beauty</option>
+                <option>Home & Garden</option>
+            </select>
+            <select class="form-input" style="width: auto;">
+                <option>Sort by: Sales</option>
+                <option>Sort by: Products</option>
+                <option>Sort by: Rating</option>
+                <option>Sort by: Followers</option>
+            </select>
+            <button class="btn-primary">Apply Filters</button>
+        </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-4" style="margin-bottom: 2rem;">
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">5,678</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Shops</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">$89.5M</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Revenue</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">234K</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Products</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">4.6</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Avg Rating</div>
+        </div>
+    </div>
+
+    <!-- Shops Grid -->
+    <div class="grid grid-3">
+        {% for shop in shops %}
+        <div class="card">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.5rem;">{{ shop.name[0] }}</div>
+                <div>
+                    <h3 style="font-weight: 600; font-size: 1.2rem;">{{ shop.name }}</h3>
+                    <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">{{ shop.category }}</p>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ shop.products }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Products</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ shop.sales }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Sales</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ shop.rating }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Rating</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ shop.followers }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Followers</div>
+                </div>
+            </div>
+            
+            <a href="{{ url_for('shop_detail', shop_id=shop.id) }}" class="btn-secondary" style="width: 100%; text-align: center;">View Shop</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+        <button class="btn-secondary">Previous</button>
+        <button class="btn-primary">1</button>
+        <button class="btn-secondary">2</button>
+        <button class="btn-secondary">3</button>
+        <button class="btn-secondary">Next</button>
+    </div>
+</div>
+{% endblock %} 

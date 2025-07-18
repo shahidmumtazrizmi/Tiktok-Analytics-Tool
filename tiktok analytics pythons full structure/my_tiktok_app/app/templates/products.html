@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}Products - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Products Analytics</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Discover trending products and analyze their performance across TikTok Shop</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+            <input type="text" placeholder="Search products..." class="form-input" style="flex: 1; min-width: 250px;">
+            <select class="form-input" style="width: auto;">
+                <option>All Categories</option>
+                <option>Electronics</option>
+                <option>Fashion</option>
+                <option>Beauty</option>
+                <option>Home & Garden</option>
+                <option>Sports</option>
+            </select>
+            <select class="form-input" style="width: auto;">
+                <option>Sort by: Sales</option>
+                <option>Sort by: Views</option>
+                <option>Sort by: Price</option>
+                <option>Sort by: Rating</option>
+            </select>
+            <button class="btn-primary">Apply Filters</button>
+        </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-4" style="margin-bottom: 2rem;">
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">1,234</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Products</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">$45.2M</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Sales</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">892K</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Views</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">4.8</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Avg Rating</div>
+        </div>
+    </div>
+
+    <!-- Products Grid -->
+    <div class="grid grid-3">
+        {% for product in products %}
+        <div class="card">
+            <div style="width: 100%; height: 200px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">📱</div>
+            <h3 style="font-weight: 600; margin-bottom: 0.5rem;">{{ product.name }}</h3>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-bottom: 1rem;">{{ product.category }}</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+                <div style="text-align: center; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                    <div style="color: #4ecdc4; font-weight: 600;">${{ product.price }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Price</div>
+                </div>
+                <div style="text-align: center; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                    <div style="color: #4ecdc4; font-weight: 600;">{{ product.sales }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Sales</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-bottom: 1rem;">
+                <div style="text-align: center; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                    <div style="color: #4ecdc4; font-weight: 600;">{{ product.views }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Views</div>
+                </div>
+                <div style="text-align: center; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                    <div style="color: #4ecdc4; font-weight: 600;">{{ product.rating }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Rating</div>
+                </div>
+            </div>
+            
+            <a href="{{ url_for('product_detail', product_id=product.id) }}" class="btn-secondary" style="width: 100%; text-align: center;">View Details</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+        <button class="btn-secondary">Previous</button>
+        <button class="btn-primary">1</button>
+        <button class="btn-secondary">2</button>
+        <button class="btn-secondary">3</button>
+        <button class="btn-secondary">Next</button>
+    </div>
+</div>
+{% endblock %} 

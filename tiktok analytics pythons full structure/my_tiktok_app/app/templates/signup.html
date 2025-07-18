@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Sign Up - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container" style="max-width: 500px; margin: 0 auto; padding-top: 2rem;">
+    <div class="card">
+        <div style="text-align: center; margin-bottom: 2rem;">
+            <h1 style="font-size: 2.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Join Kalodata</h1>
+            <p style="color: rgba(255, 255, 255, 0.7);">Create your account to start analyzing TikTok Shop data</p>
+        </div>
+
+        {% if error %}
+        <div style="background: rgba(244, 67, 54, 0.2); border: 1px solid rgba(244, 67, 54, 0.3); color: #f44336; padding: 1rem; border-radius: 10px; margin-bottom: 1rem;">
+            {{ error }}
+        </div>
+        {% endif %}
+
+        <form method="POST" action="{{ url_for('signup') }}">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); font-weight: 500;">First Name</label>
+                    <input type="text" name="first_name" required class="form-input" placeholder="First name">
+                </div>
+                <div>
+                    <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); font-weight: 500;">Last Name</label>
+                    <input type="text" name="last_name" required class="form-input" placeholder="Last name">
+                </div>
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); font-weight: 500;">Email</label>
+                <input type="email" name="email" required class="form-input" placeholder="Enter your email">
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); font-weight: 500;">Password</label>
+                <input type="password" name="password" required class="form-input" placeholder="Create a password">
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); font-weight: 500;">Confirm Password</label>
+                <input type="password" name="confirm_password" required class="form-input" placeholder="Confirm your password">
+            </div>
+
+            <div style="margin-bottom: 1.5rem;">
+                <label style="display: block; margin-bottom: 0.5rem; color: rgba(255, 255, 255, 0.8); font-weight: 500;">Company (Optional)</label>
+                <input type="text" name="company" class="form-input" placeholder="Your company name">
+            </div>
+
+            <div style="margin-bottom: 2rem;">
+                <label style="display: flex; align-items: flex-start; gap: 0.5rem; color: rgba(255, 255, 255, 0.8);">
+                    <input type="checkbox" name="terms" required style="width: auto; margin-top: 0.2rem;">
+                    <span>I agree to the <a href="#" style="color: #4ecdc4; text-decoration: none;">Terms of Service</a> and <a href="#" style="color: #4ecdc4; text-decoration: none;">Privacy Policy</a></span>
+                </label>
+            </div>
+
+            <button type="submit" class="btn-primary" style="width: 100%; margin-bottom: 1rem;">Create Account</button>
+        </form>
+
+        <div style="text-align: center; color: rgba(255, 255, 255, 0.7);">
+            Already have an account? 
+            <a href="{{ url_for('login') }}" style="color: #4ecdc4; text-decoration: none;">Sign in</a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %}Categories - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Category Analytics</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Explore TikTok Shop categories and their performance insights</p>
+    </div>
+
+    <!-- Search -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <input type="text" placeholder="Search categories..." class="form-input" style="margin-bottom: 1rem;">
+        <div style="display: flex; gap: 1rem;">
+            <select class="form-input" style="flex: 1;">
+                <option>Sort by: Sales</option>
+                <option>Sort by: Products</option>
+                <option>Sort by: Growth</option>
+                <option>Sort by: Revenue</option>
+            </select>
+            <button class="btn-primary">Apply</button>
+        </div>
+    </div>
+
+    <!-- Categories Grid -->
+    <div class="grid grid-3">
+        {% for category in categories %}
+        <div class="card">
+            <div style="width: 100%; height: 200px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 15px; margin-bottom: 1.5rem; display: flex; align-items: center; justify-content: center; font-size: 3rem;">{{ category.icon }}</div>
+            
+            <h3 style="font-weight: 600; font-size: 1.3rem; margin-bottom: 0.5rem;">{{ category.name }}</h3>
+            <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-bottom: 1.5rem;">{{ category.description }}</p>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ category.products }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Products</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ category.sales }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Sales</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">${{ category.revenue }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Revenue</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ category.growth }}%</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Growth</div>
+                </div>
+            </div>
+            
+            <a href="{{ url_for('category_detail', category_id=category.id) }}" class="btn-secondary" style="width: 100%; text-align: center;">Explore Category</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

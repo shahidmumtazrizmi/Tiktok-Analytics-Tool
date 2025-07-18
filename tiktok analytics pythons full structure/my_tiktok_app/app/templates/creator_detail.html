@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}{{ creator.name }} - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Breadcrumb -->
+    <div style="padding: 1rem 0; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
+        <a href="{{ url_for('home') }}" style="color: #4ecdc4; text-decoration: none;">Home</a> > 
+        <a href="{{ url_for('creators') }}" style="color: #4ecdc4; text-decoration: none;">Creators</a> > 
+        <span>{{ creator.name }}</span>
+    </div>
+
+    <!-- Creator Header -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start;">
+            <div>
+                <div style="width: 100%; height: 300px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem; font-weight: 700;">{{ creator.name[0] }}</div>
+            </div>
+            <div>
+                <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">{{ creator.name }}</h1>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; margin-bottom: 2rem;">{{ creator.bio }}</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ creator.followers }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Followers</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ creator.videos }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Videos</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ creator.engagement }}%</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Engagement</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ creator.likes }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Likes</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn-primary">Follow Creator</button>
+                    <button class="btn-secondary">Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Metrics -->
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #4ecdc4;">Performance Metrics</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Followers Growth</h3>
+                <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.5);">
+                    Chart Placeholder
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Engagement Rate</h3>
+                <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.5);">
+                    Chart Placeholder
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Videos -->
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #4ecdc4;">Recent Videos</h2>
+        <div class="grid grid-4">
+            {% for video in creator_videos %}
+            <div class="card">
+                <div style="width: 100%; height: 150px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">🎥</div>
+                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">{{ video.title }}</h3>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-bottom: 1rem;">{{ video.views }} views</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: #4ecdc4; font-weight: 600;">{{ video.likes }}</span>
+                    <span style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">{{ video.comments }}</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

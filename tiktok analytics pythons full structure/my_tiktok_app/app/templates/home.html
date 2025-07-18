@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TikTok Analytics + RAG Chatbot</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            color: white;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="bg-black/50 backdrop-blur-lg border-b border-white/10 p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-cyan-500 bg-clip-text text-transparent">
+                TikTok Analytics
+            </a>
+            <div class="flex items-center space-x-4">
+                <select class="bg-white/10 border border-white/20 rounded-lg px-3 py-1 text-white">
+                    <option value="US">🇺🇸 US</option>
+                    <option value="UK">🇬🇧 UK</option>
+                </select>
+                <a href="/products" class="text-white/80 hover:text-white">Products</a>
+                <a href="/shops" class="text-white/80 hover:text-white">Shops</a>
+                <a href="/creators" class="text-white/80 hover:text-white">Creators</a>
+                <a href="/categories" class="text-white/80 hover:text-white">Categories</a>
+                <a href="/chatbot" class="text-cyan-400 font-semibold">Chatbot</a>
+                <a href="/pricing" class="text-white/80 hover:text-white">Pricing</a>
+                <a href="/login" class="text-white/80 hover:text-white">Sign In</a>
+                <a href="/signup" class="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-4 py-2 rounded-lg font-semibold">
+                    Get Started
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="max-w-7xl mx-auto px-4 py-20">
+        <div class="text-center">
+            <h1 class="text-6xl font-bold mb-6 bg-gradient-to-r from-pink-500 to-cyan-500 bg-clip-text text-transparent">
+                TikTok Analytics + RAG Chatbot
+            </h1>
+            <p class="text-xl text-white/80 mb-8 max-w-3xl mx-auto">
+                Discover trending products, analyze shop performance, and get AI-powered insights to scale your TikTok Shop business.
+            </p>
+            <div class="flex justify-center space-x-4">
+                <a href="/signup" class="bg-gradient-to-r from-pink-500 to-cyan-500 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:opacity-90 transition-opacity">
+                    Start Free Trial
+                </a>
+                <a href="/chatbot" class="border-2 border-white/30 text-white px-8 py-4 rounded-lg font-semibold text-lg hover:bg-white/10 transition-colors">
+                    Try Chatbot
+                </a>
+            </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid md:grid-cols-3 gap-8 mt-20">
+            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div class="text-4xl mb-4">📊</div>
+                <h3 class="text-xl font-semibold mb-2">Analytics Dashboard</h3>
+                <p class="text-white/70">Comprehensive TikTok Shop analytics with real-time data and insights.</p>
+            </div>
+            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div class="text-4xl mb-4">🤖</div>
+                <h3 class="text-xl font-semibold mb-2">AI Chatbot</h3>
+                <p class="text-white/70">Get instant guidance on TikTok Shop strategies and troubleshooting.</p>
+            </div>
+            <div class="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+                <div class="text-4xl mb-4">🌍</div>
+                <h3 class="text-xl font-semibold mb-2">Global Coverage</h3>
+                <p class="text-white/70">Analytics for all TikTok Shop operating countries worldwide.</p>
+            </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div class="mt-20 text-center">
+            <h2 class="text-3xl font-bold mb-8">Quick Access</h2>
+            <div class="grid md:grid-cols-4 gap-4">
+                <a href="/products" class="bg-white/5 hover:bg-white/10 p-6 rounded-lg border border-white/10 transition-colors">
+                    <div class="text-2xl mb-2">🛍️</div>
+                    <div class="font-semibold">Products</div>
+                </a>
+                <a href="/shops" class="bg-white/5 hover:bg-white/10 p-6 rounded-lg border border-white/10 transition-colors">
+                    <div class="text-2xl mb-2">🏪</div>
+                    <div class="font-semibold">Shops</div>
+                </a>
+                <a href="/creators" class="bg-white/5 hover:bg-white/10 p-6 rounded-lg border border-white/10 transition-colors">
+                    <div class="text-2xl mb-2">👥</div>
+                    <div class="font-semibold">Creators</div>
+                </a>
+                <a href="/categories" class="bg-white/5 hover:bg-white/10 p-6 rounded-lg border border-white/10 transition-colors">
+                    <div class="text-2xl mb-2">📂</div>
+                    <div class="font-semibold">Categories</div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-black/50 border-t border-white/10 mt-20 py-8">
+        <div class="max-w-7xl mx-auto px-4 text-center">
+            <p class="text-white/60">&copy; 2024 TikTok Analytics Platform. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html> 

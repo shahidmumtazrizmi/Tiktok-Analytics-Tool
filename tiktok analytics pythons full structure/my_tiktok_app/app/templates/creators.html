@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %}Creators - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Header -->
+    <div style="margin-bottom: 2rem;">
+        <h1 style="font-size: 2.5rem; font-weight: 700; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1rem;">Creator Analytics</h1>
+        <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem;">Discover top TikTok creators and analyze their performance</p>
+    </div>
+
+    <!-- Filters -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: flex; gap: 1rem; flex-wrap: wrap; align-items: center;">
+            <input type="text" placeholder="Search creators..." class="form-input" style="flex: 1; min-width: 250px;">
+            <select class="form-input" style="width: auto;">
+                <option>All Categories</option>
+                <option>Lifestyle</option>
+                <option>Fashion</option>
+                <option>Beauty</option>
+                <option>Tech</option>
+                <option>Food</option>
+            </select>
+            <select class="form-input" style="width: auto;">
+                <option>Sort by: Followers</option>
+                <option>Sort by: Engagement</option>
+                <option>Sort by: Videos</option>
+                <option>Sort by: Likes</option>
+            </select>
+            <button class="btn-primary">Apply Filters</button>
+        </div>
+    </div>
+
+    <!-- Stats Overview -->
+    <div class="grid grid-4" style="margin-bottom: 2rem;">
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">12,345</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Creators</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">2.1B</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Followers</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">456K</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Total Videos</div>
+        </div>
+        <div class="card">
+            <div style="color: #4ecdc4; font-size: 2rem; font-weight: 700;">8.5%</div>
+            <div style="color: rgba(255, 255, 255, 0.7);">Avg Engagement</div>
+        </div>
+    </div>
+
+    <!-- Creators Grid -->
+    <div class="grid grid-3">
+        {% for creator in creators %}
+        <div class="card">
+            <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="width: 60px; height: 60px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1.5rem;">{{ creator.name[0] }}</div>
+                <div>
+                    <h3 style="font-weight: 600; font-size: 1.2rem;">{{ creator.name }}</h3>
+                    <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">{{ creator.category }}</p>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ creator.followers }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Followers</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ creator.videos }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Videos</div>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1.5rem;">
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ creator.engagement }}%</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Engagement</div>
+                </div>
+                <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                    <div style="color: #4ecdc4; font-weight: 600; font-size: 1.2rem;">{{ creator.likes }}</div>
+                    <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Likes</div>
+                </div>
+            </div>
+            
+            <a href="{{ url_for('creator_detail', creator_id=creator.id) }}" class="btn-secondary" style="width: 100%; text-align: center;">View Creator</a>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+        <button class="btn-secondary">Previous</button>
+        <button class="btn-primary">1</button>
+        <button class="btn-secondary">2</button>
+        <button class="btn-secondary">3</button>
+        <button class="btn-secondary">Next</button>
+    </div>
+</div>
+{% endblock %}

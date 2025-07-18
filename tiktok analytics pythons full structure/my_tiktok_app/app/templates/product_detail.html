@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}{{ product.name }} - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Breadcrumb -->
+    <div style="padding: 1rem 0; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
+        <a href="{{ url_for('home') }}" style="color: #4ecdc4; text-decoration: none;">Home</a> > 
+        <a href="{{ url_for('products') }}" style="color: #4ecdc4; text-decoration: none;">Products</a> > 
+        <span>{{ product.name }}</span>
+    </div>
+
+    <!-- Product Header -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start;">
+            <div>
+                <div style="width: 100%; height: 300px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">📱</div>
+            </div>
+            <div>
+                <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">{{ product.name }}</h1>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; margin-bottom: 2rem;">{{ product.description }}</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">${{ product.price }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Price</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ product.sales }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Sales</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ product.views }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Views</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ product.rating }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Rating</div>
+                    </div>
+                </div>
+                
+                <div style="display: flex; gap: 1rem;">
+                    <button class="btn-primary">Track Product</button>
+                    <button class="btn-secondary">Share</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Metrics -->
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #4ecdc4;">Performance Metrics</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Sales Trend</h3>
+                <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.5);">
+                    Chart Placeholder
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Views Trend</h3>
+                <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.5);">
+                    Chart Placeholder
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Related Products -->
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #4ecdc4;">Related Products</h2>
+        <div class="grid grid-4">
+            {% for related in related_products %}
+            <div class="card">
+                <div style="width: 100%; height: 150px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📱</div>
+                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">{{ related.name }}</h3>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-bottom: 1rem;">{{ related.category }}</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: #4ecdc4; font-weight: 600;">${{ related.price }}</span>
+                    <span style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">{{ related.sales }} sales</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 

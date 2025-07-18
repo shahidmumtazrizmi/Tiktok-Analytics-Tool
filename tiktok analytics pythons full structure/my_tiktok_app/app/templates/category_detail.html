@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+
+{% block title %}{{ category.name }} - Kalodata TikTok Analytics{% endblock %}
+
+{% block content %}
+<div class="container">
+    <!-- Breadcrumb -->
+    <div style="padding: 1rem 0; color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">
+        <a href="{{ url_for('home') }}" style="color: #4ecdc4; text-decoration: none;">Home</a> > 
+        <a href="{{ url_for('categories') }}" style="color: #4ecdc4; text-decoration: none;">Categories</a> > 
+        <span>{{ category.name }}</span>
+    </div>
+
+    <!-- Category Header -->
+    <div class="card" style="margin-bottom: 2rem;">
+        <div style="display: grid; grid-template-columns: 1fr 2fr; gap: 2rem; align-items: start;">
+            <div>
+                <div style="width: 100%; height: 300px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 4rem;">{{ category.icon }}</div>
+            </div>
+            <div>
+                <h1 style="font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;">{{ category.name }}</h1>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 1.1rem; margin-bottom: 2rem;">{{ category.description }}</p>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-bottom: 2rem;">
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ category.products }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Products</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ category.sales }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Sales</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">${{ category.revenue }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Revenue</div>
+                    </div>
+                    <div style="text-align: center; padding: 1rem; background: rgba(255, 255, 255, 0.05); border-radius: 10px;">
+                        <div style="color: #4ecdc4; font-size: 1.5rem; font-weight: 700;">{{ category.growth }}%</div>
+                        <div style="color: rgba(255, 255, 255, 0.6);">Growth</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Performance Metrics -->
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #4ecdc4;">Category Performance</h2>
+        <div class="grid grid-2">
+            <div class="card">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Sales Trend</h3>
+                <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.5);">
+                    Chart Placeholder
+                </div>
+            </div>
+            <div class="card">
+                <h3 style="font-weight: 600; margin-bottom: 1rem;">Revenue Growth</h3>
+                <div style="height: 200px; background: rgba(255, 255, 255, 0.05); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: rgba(255, 255, 255, 0.5);">
+                    Chart Placeholder
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Products in Category -->
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #4ecdc4;">Top Products</h2>
+        <div class="grid grid-4">
+            {% for product in category_products %}
+            <div class="card">
+                <div style="width: 100%; height: 150px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 10px; margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; font-size: 2rem;">📱</div>
+                <h3 style="font-weight: 600; margin-bottom: 0.5rem;">{{ product.name }}</h3>
+                <p style="color: rgba(255, 255, 255, 0.7); font-size: 0.9rem; margin-bottom: 1rem;">{{ product.shop }}</p>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="color: #4ecdc4; font-weight: 600;">${{ product.price }}</span>
+                    <span style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">{{ product.sales }} sales</span>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Top Shops in Category -->
+    <div style="margin-bottom: 2rem;">
+        <h2 style="font-size: 1.8rem; font-weight: 600; margin-bottom: 1.5rem; color: #4ecdc4;">Top Shops</h2>
+        <div class="grid grid-3">
+            {% for shop in category_shops %}
+            <div class="card">
+                <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="width: 50px; height: 50px; background: linear-gradient(45deg, #ff6b6b, #4ecdc4); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700;">{{ shop.name[0] }}</div>
+                    <div>
+                        <h3 style="font-weight: 600;">{{ shop.name }}</h3>
+                        <p style="color: rgba(255, 255, 255, 0.6); font-size: 0.9rem;">{{ shop.products }} products</p>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <div style="text-align: center; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                        <div style="color: #4ecdc4; font-weight: 600;">{{ shop.sales }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Sales</div>
+                    </div>
+                    <div style="text-align: center; padding: 0.5rem; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+                        <div style="color: #4ecdc4; font-weight: 600;">{{ shop.rating }}</div>
+                        <div style="color: rgba(255, 255, 255, 0.6); font-size: 0.8rem;">Rating</div>
+                    </div>
+                </div>
+                <a href="{{ url_for('shop_detail', shop_id=shop.id) }}" class="btn-secondary" style="width: 100%; text-align: center;">View Shop</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %} 
